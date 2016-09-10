@@ -9,27 +9,22 @@ import com.badlogic.gdx.math.Rectangle;
 public class EnemyShip {
 	
 	private float posX, posY;
+	private int hitpoints = 100;
 	private Texture shipTexture;
 	private Rectangle shipRectangle;
-    public EnemyShip() {
-    	this.posX = 400;
-    	this.posY = 0;
-    	this.shipTexture = new Texture(Gdx.files.internal("data/images/spaceshipGood.png"));
+    public EnemyShip(Texture shipTexture, float posX, float posY) {
+    	this.posX = posX;
+    	this.posY = posY;
+    	this.shipTexture = shipTexture;
     	this.shipRectangle = new Rectangle(posX, posY, 32,32);
     }
 	public void render(SpriteBatch spriteBatch) {
 		spriteBatch.draw(shipTexture, posX, posY);
 		
 	}
-	public void update(float delta) {
-		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			posX -= 50*delta;
-		}
-		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			posX += 50*delta;
-		}
-		
+	public void update(float delta) {		
 		shipRectangle.setPosition(posX, posY);
+		posY -= 4;
 	}
 
 }
